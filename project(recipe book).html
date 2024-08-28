@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Book</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        body{
+            box-sizing: border-box;
+            background-color:rgb(204, 204, 188) ;
+        }
+        .Catagories-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 3fr));
+            gap: 20px;
+            padding: 20px;
+            background-color: rgb(204, 204, 188);
+        }
+        .Catagories-card{
+            width: 180px;
+            height: 306px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .banner{
+            background-image: url(recipeanimation.gif);
+            height: 20vw;
+            min-height: 100px;
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: 50%;
+            background-color: rgb(228, 206, 210);
+            background-attachment: fixed;
+        }
+        .heading-1{
+            text-align: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 70px;
+            padding: 15px;
+            background-color: antiquewhite;
+            border-radius: 50px;
+            border: 3px solid black;
+        }
+        .Catagories-p{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 40px;
+            padding: 15px;
+            background-image: linear-gradient(to top, #d5e8d4, #7ade64);
+            border-radius: 50px;
+        }
+        /* New styles for the category box */
+        .category-box {
+            border: 1px;
+            padding: 10px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .category-box label {
+            margin-right: 10px;
+        }
+        .category-box select {
+            padding: 5px;
+            border-radius: 30px;
+        }
+        h4{
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            font: bold;
+        }
+        .buttons{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 3fr));
+            gap: 20px;
+            padding: 20px;
+            background-color: rgb(182, 240, 182);
+            font-size: 15px;
+            border-radius: 80px;
+            display: inline;
+            float: left;
+            transition: width 2s height 2s;
+            
+        }
+        .buttons:hover{
+            text-decoration: double;
+            color: green;
+            width: 150px;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+        .buttons-1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px; /* Adds space between the buttons, adjust as needed */
+        padding: 20px; /* Adjust the padding as needed */
+        }
+        .Available{
+            margin-top: 50px;
+            margin-left: 20px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 45px;
+        }
+        h4{
+            font-size: 15px;
+            font-weight: 100;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        hr{
+            border: 1px solid black;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #deeade;
+            
+        }
+        .image{
+            
+            border-radius: 50%;
+            margin-right:50px ;
+
+        }
+        .text{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+           
+            font-size: 15px;
+            font: bolder;
+
+        }
+        .join{
+            font-size: 15px;
+            font-family: 'Times New Roman', Times, serif;
+            background-image: linear-gradient(to left,#ff9090, #ffd0d0);
+            border-radius: 10px;
+        }
+        .join:hover{
+            background-image: linear-gradient(to top, #ff9090, #ffd0d0);
+        }
+        .pasta_btn{
+            float: right;
+            font-family: 'Courier New', Courier, monospace;
+            border-radius: 15px;
+        }
+        .pasta_btn:hover{
+            background-color: #979b97;
+        }
+        .Italian_h4{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: 100;
+        }
+
+
+
+    </style>
+</head>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">CookBook</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Catagories
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <div class="banner"></div>
+    
+</header>
+<section class="Catagories">
+    <div class="category-box">
+        <label class="Catagories-p" for="Catagories">Categories:</label>
+        <select name="Catagories" id="Catagories" required>
+            <option value="">---Select a Category---</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Dessert">Dessert</option>
+        </select>
+    </div>
+   
+    <div class="Catagories-grid">
+        <div class="Catagories-card">
+            <img src="breakfast.jpeg" alt="">
+            <h4>~Breakfast</h4>
+        </div>
+        <div class="Catagories-card">
+            <img src="lunch.jpeg" alt="">
+            <h4>~Lunch</h4>
+        </div>
+        <div class="Catagories-card">
+            <img src="dinner.jpeg" alt="">
+            <h4>~Dinner</h4>
+        </div>
+        <div class="Catagories-card">
+            <img src="dessert.jpeg" alt="">
+            <h4>~Dessert</h4>
+        </div>
+    </div>
+    
+</section>
+<body>
+    
+    <h2 class="Available">Available!</h2>
+    <div class="buttons-1">
+        
+        <button class="buttons">Amazon</button>
+        <button class="buttons">IndieBond</button>
+        <button class="buttons">Barney's</button>
+        <button class="buttons">Pie in the Sky</button>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="image">
+            <img src="bun.jpeg" alt="" style="border-radius: 50%; max-width: 50%; max-height: 40%;">
+        </div>
+        <div class="text">
+            <p>Join my newsletter!
+        
+            </p>
+            <p>Weekly recipes and inspirations.</p>
+            <p>Email: <input type="email" name="email" id="email" required placeholder="abc@gmail.com"></form> <button class="join">Join</button></p>
+            
+            <p class="follow">Follow me: <a href="https://www.youtube.com/channel/UCIIr5HHzIiPp9egvOzzxfcA" target="_blank" rel="noopener noreferrer">Youtube</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="https://www.instagram.com/farehaadnann/?hl=en" target="_blank" rel="noopener noreferrer">Instagram</a>&nbsp;&nbsp;&nbsp;&nbsp; |  <a href="https://www.instagram.com/farehaadnann/?hl=en" target="_blank" rel="noopener noreferrer">TikTok</a>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        
+            </p>
+        </div>
+    </div>
+    <hr>
+    <h2 class="Italian_h4">Italian Recipes         <button class="pasta_btn">Pasta Recipes>></button></h2>
+    <div class="Catagories-grid">
+        
+        <div class="Catagories-card">
+            <a href="Math 102 Course Outline, Spring 2024.pdf.crdownload" target="_blank" ><img src="homemade_pasta.jpeg" alt=""></a>
+            <h4>~Homemade Pasta</h4>
+        </div>
+        <div class="Catagories-card">
+            <a href="Math 102 Course Outline, Spring 2024.pdf.crdownload" target="_blank" ><img src="homemade_pappardalle.jpeg" alt=""></a>
+            <h4>~Homemade Pappardalle</h4>
+        </div>
+        <div class="Catagories-card">
+            <a href="Math 102 Course Outline, Spring 2024.pdf.crdownload" target="_blank" ><img src="simple_bruschetta.jpeg" alt=""></a>
+            <h4>~Simple Bruschetta</h4>
+        </div>
+        <div class="Catagories-card">
+            <a href="Math 102 Course Outline, Spring 2024.pdf.crdownload" target="_blank" ><img src="lasagna.jpeg" alt=""></a>
+            <h4>~Lasagna</h4>
+        </div>
+        
+        
+    </div>
+    <hr>
+    
+
+
+</body>
+</html>
